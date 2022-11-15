@@ -21,8 +21,8 @@ body {
   font-size: 1.4rem;
   min-height: 100vh;
   padding: 0 2.5rem;
-  background: url(/images/pattern-hills.svg) no-repeat right 25% bottom -5%, -webkit-gradient(linear, left top, left bottom, from(#1d1e28), color-stop(#1e1e29), color-stop(#1e1e29), color-stop(#1f1d2a), color-stop(#201d2a), color-stop(#211d2a), color-stop(#211d2b), color-stop(#221d2b), color-stop(#231d2b), color-stop(#231d2c), color-stop(#241d2c), to(#251d2c));
-  background: url(/images/pattern-hills.svg) no-repeat right 25% bottom -5%, linear-gradient(to bottom, #1d1e28, #1e1e29, #1e1e29, #1f1d2a, #201d2a, #211d2a, #211d2b, #221d2b, #231d2b, #231d2c, #241d2c, #251d2c);
+  background: url(../images/pattern-hills.svg) no-repeat right 25% bottom -5%, -webkit-gradient(linear, left top, left bottom, from(#1d1e28), color-stop(#1e1e29), color-stop(#1e1e29), color-stop(#1f1d2a), color-stop(#201d2a), color-stop(#211d2a), color-stop(#211d2b), color-stop(#221d2b), color-stop(#231d2b), color-stop(#231d2c), color-stop(#241d2c), to(#251d2c));
+  background: url(../images/pattern-hills.svg) no-repeat right 25% bottom -5%, linear-gradient(to bottom, #1d1e28, #1e1e29, #1e1e29, #1f1d2a, #201d2a, #211d2a, #211d2b, #221d2b, #231d2b, #231d2c, #241d2c, #251d2c);
   text-align: center;
   overflow: hidden;
 }
@@ -31,7 +31,7 @@ body::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: url(/images/bg-stars.svg) center;
+  background: url(../images/bg-stars.svg) center;
   -webkit-animation: fallDown 60s infinite;
           animation: fallDown 60s infinite;
   z-index: -1;

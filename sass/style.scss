@@ -22,7 +22,7 @@ body {
 	font-size: 1.4rem;
 	min-height: 100vh;
 	padding: 0 2.5rem;
-	background: url(/images/pattern-hills.svg) no-repeat right 25% bottom -5%,
+	background: url(../images/pattern-hills.svg) no-repeat right 25% bottom -5%,
 		linear-gradient(
 			to bottom,
 			#1d1e28,
@@ -46,7 +46,7 @@ body::before {
 	content: '';
 	position: absolute;
 	inset: 0;
-	background: url(/images/bg-stars.svg) center;
+	background: url(../images/bg-stars.svg) center;
 	animation: fallDown 60s infinite;
 	z-index: -1;
 }
