@@ -93,14 +93,22 @@ body::before {
 		min-height: 7rem;
 		aspect-ratio: 1/1;
 		border-radius: 0.5rem;
-		background-color: $very-dark-mostly-black-blue;
+		background-color: $dark-desaturated-blue;
+	}
 
-		// ::after {
-		// 	content: '';
-		// 	position: absolute;
-		// 	inset: 0;
-		// 	background-color: $dark-desaturated-blue;
-		// }
+	&__upperbox {
+		position: absolute;
+		height: 50%;
+		width: 100%;
+		border-bottom: 1px solid rgba($very-dark-mostly-black-blue, 0.3);
+		background-color: rgba($very-dark-blue, 0.3);
+	}
+
+	&__lowerbox {
+		position: absolute;
+		top: 50%;
+		height: 50%;
+		width: 100%;
 	}
 
 	&__number {
@@ -120,6 +128,27 @@ body::before {
 		bottom: -1.2rem;
 		color: $grayish-blue;
 	}
+}
+
+.countdown-timer__timer-container::after,
+.countdown-timer__timer-container::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	height: 1rem;
+	width: 1rem;
+	border-radius: 50%;
+	background-color: $very-dark-blue;
+}
+
+.countdown-timer__timer-container::after {
+	left: 0;
+	translate: -50% -50%;
+}
+
+.countdown-timer__timer-container::before {
+	right: 0;
+	translate: 50% -50%;
 }
 
 .footer {
