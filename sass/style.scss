@@ -60,40 +60,20 @@ body::before {
 	color: $white;
 }
 
-// .countdown-timer,
-// .countdown-info {
-// 	display: flex;
-// 	flex-direction: row;
-// 	gap: 1.5rem;
-// }
-
-// .countdown-info {
-// 	justify-content: space-between;
-// 	margin: 0 2rem;
-
-// 	&__text {
-// 		font-size: 0.7rem;
-// 		letter-spacing: 3px;
-// 		text-transform: uppercase;
-// 		position: relative;
-// 		bottom: -1.2rem;
-// 		color: $grayish-blue;
-// 	}
-// }
-
 .countdown-timer {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
-	gap: 1.5rem;
-	padding-top: 5.5rem;
+	justify-content: center;
+	gap: clamp(1.5rem, 3vw, 3.5rem);
+	padding-top: clamp(5.5rem, 8vw, 11rem);
 
 	&__timer-container {
 		position: relative;
-		min-height: 7rem;
+		min-height: clamp(7rem, 11vw, 15rem);
 		aspect-ratio: 1/1;
 		border-radius: 0.5rem;
 		background-color: $dark-desaturated-blue;
+		box-shadow: 0px 8px 0px 0px $very-dark-mostly-black-blue;
 	}
 
 	&__upperbox {
@@ -104,30 +84,36 @@ body::before {
 		background-color: rgba($very-dark-blue, 0.3);
 	}
 
-	&__lowerbox {
-		position: absolute;
-		top: 50%;
-		height: 50%;
-		width: 100%;
-	}
-
 	&__number {
-		font-size: 3.2rem;
+		font-size: clamp(3.2rem, 6vw, 8rem);
 		position: relative;
-		height: 100%;
-		padding-top: 1.2rem;
+		line-height: 100%;
+		top: 50%;
+		translate: 0 -50%;
 		color: $soft-red;
 		opacity: 0.6;
 	}
 
 	&__text {
-		font-size: 0.7rem;
+		font-size: clamp(0.7rem, 1vw, 1.3rem);
 		letter-spacing: 3px;
 		text-transform: uppercase;
 		position: relative;
-		bottom: -1.2rem;
+		top: clamp(5rem, 7vw, 10rem);
+		width: 100%;
 		color: $grayish-blue;
 	}
+}
+
+.countdown-timer__upperbox::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-top: 2px solid $very-dark-mostly-black-blue;
+	background-color: rgba($very-dark-blue, 0.3);
+	transform-origin: bottom;
+	// animation: flip 2s infinite;
+	animation: flip 2s forwards;
 }
 
 .countdown-timer__timer-container::after,
@@ -153,6 +139,7 @@ body::before {
 
 .footer {
 	position: absolute;
+	width: 100%;
 	bottom: 1rem;
 
 	&__media {
@@ -179,5 +166,20 @@ body::before {
 	}
 	to {
 		background-position: 0% 569px;
+	}
+}
+
+@keyframes flip {
+	from {
+		transform: 0;
+	}
+	to {
+		transform: rotateX(-180deg);
+	}
+}
+
+@media (min-width: 1440px) {
+	body {
+		background-size: contain;
 	}
 }

@@ -54,18 +54,20 @@ body::before {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  gap: 1.5rem;
-  padding-top: 5.5rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: clamp(1.5rem, 3vw, 3.5rem);
+  padding-top: clamp(5.5rem, 8vw, 11rem);
 }
 .countdown-timer__timer-container {
   position: relative;
-  min-height: 7rem;
+  min-height: clamp(7rem, 11vw, 15rem);
   aspect-ratio: 1/1;
   border-radius: 0.5rem;
   background-color: hsl(236deg, 21%, 26%);
+  -webkit-box-shadow: 0px 8px 0px 0px hsl(234deg, 17%, 12%);
+          box-shadow: 0px 8px 0px 0px hsl(234deg, 17%, 12%);
 }
 .countdown-timer__upperbox {
   position: absolute;
@@ -74,27 +76,35 @@ body::before {
   border-bottom: 1px solid rgba(25, 26, 36, 0.3);
   background-color: rgba(30, 31, 41, 0.3);
 }
-.countdown-timer__lowerbox {
-  position: absolute;
-  top: 50%;
-  height: 50%;
-  width: 100%;
-}
 .countdown-timer__number {
-  font-size: 3.2rem;
+  font-size: clamp(3.2rem, 6vw, 8rem);
   position: relative;
-  height: 100%;
-  padding-top: 1.2rem;
+  line-height: 100%;
+  top: 50%;
+  translate: 0 -50%;
   color: hsl(345deg, 95%, 68%);
   opacity: 0.6;
 }
 .countdown-timer__text {
-  font-size: 0.7rem;
+  font-size: clamp(0.7rem, 1vw, 1.3rem);
   letter-spacing: 3px;
   text-transform: uppercase;
   position: relative;
-  bottom: -1.2rem;
+  top: clamp(5rem, 7vw, 10rem);
+  width: 100%;
   color: hsl(237deg, 18%, 59%);
+}
+
+.countdown-timer__upperbox::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-top: 2px solid hsl(234deg, 17%, 12%);
+  background-color: rgba(30, 31, 41, 0.3);
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+  -webkit-animation: flip 2s forwards;
+          animation: flip 2s forwards;
 }
 
 .countdown-timer__timer-container::after,
@@ -120,6 +130,7 @@ body::before {
 
 .footer {
   position: absolute;
+  width: 100%;
   bottom: 1rem;
 }
 .footer__media {
@@ -155,5 +166,30 @@ body::before {
   }
   to {
     background-position: 0% 569px;
+  }
+}
+@-webkit-keyframes flip {
+  from {
+    -webkit-transform: 0;
+            transform: 0;
+  }
+  to {
+    -webkit-transform: rotateX(-180deg);
+            transform: rotateX(-180deg);
+  }
+}
+@keyframes flip {
+  from {
+    -webkit-transform: 0;
+            transform: 0;
+  }
+  to {
+    -webkit-transform: rotateX(-180deg);
+            transform: rotateX(-180deg);
+  }
+}
+@media (min-width: 1440px) {
+  body {
+    background-size: contain;
   }
 }/*# sourceMappingURL=style.css.map */
