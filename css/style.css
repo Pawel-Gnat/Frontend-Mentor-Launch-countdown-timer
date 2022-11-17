@@ -61,58 +61,99 @@ body::before {
   padding-top: clamp(5.5rem, 8vw, 11rem);
 }
 .countdown-timer__timer-container {
+  font-size: clamp(3.2rem, 6vw, 8rem);
+  line-height: 0;
   position: relative;
   min-height: clamp(7rem, 11vw, 15rem);
   aspect-ratio: 1/1;
-  border-radius: 0.5rem;
-  background-color: hsl(236deg, 21%, 26%);
   -webkit-box-shadow: 0px 8px 0px 0px hsl(234deg, 17%, 12%);
           box-shadow: 0px 8px 0px 0px hsl(234deg, 17%, 12%);
-  -webkit-perspective: 800px;
-          perspective: 800px;
+  color: hsl(345deg, 95%, 68%);
+}
+.countdown-timer__upperbox, .countdown-timer__lowerbox {
+  position: relative;
+  height: 50%;
+  width: 100%;
+  border-radius: 0.5rem;
+  background-color: hsl(236deg, 21%, 26%);
+  -webkit-perspective: 30rem;
+          perspective: 30rem;
 }
 .countdown-timer__upperbox {
-  position: absolute;
-  height: 50%;
-  width: 100%;
   border-bottom: 1px solid rgba(25, 26, 36, 0.3);
-  -webkit-transform-origin: center bottom;
-          transform-origin: center bottom;
-  -webkit-perspective-origin: bottom right;
-          perspective-origin: bottom right;
+  -webkit-filter: brightness(80%);
+          filter: brightness(80%);
+  -webkit-perspective-origin: bottom;
+          perspective-origin: bottom;
 }
 .countdown-timer__lowerbox {
-  position: absolute;
-  top: 50%;
-  height: 50%;
-  width: 100%;
-  border-top: 1px solid hsl(234deg, 17%, 12%);
-}
-.countdown-timer__number {
-  font-size: clamp(3.2rem, 6vw, 8rem);
-  position: relative;
-  line-height: 100%;
-  top: 50%;
-  translate: 0 -50%;
-  color: hsl(345deg, 95%, 68%);
-  opacity: 0.6;
+  -webkit-transform-origin: top;
+          transform-origin: top;
 }
 .countdown-timer__text {
   font-size: clamp(0.7rem, 1vw, 1.3rem);
   letter-spacing: 3px;
   text-transform: uppercase;
   position: relative;
-  top: clamp(5rem, 7vw, 10rem);
+  top: clamp(2rem, 2vw, 3rem);
   width: 100%;
   color: hsl(237deg, 18%, 59%);
 }
 
-.countdown-timer__upperbox::before {
-  content: "";
+.card-top,
+.card-top-flip {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.card-bottom,
+.card-bottom-flip {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.card-top,
+.card-bottom {
+  height: 100%;
+  overflow: hidden;
+}
+
+.card-top-flip,
+.card-bottom-flip {
   position: absolute;
   inset: 0;
-  height: 100%;
-  border-top: 2px solid hsl(234deg, 17%, 12%);
+  width: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.card-top-flip {
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+  border-top: 1px solid hsl(234deg, 17%, 12%);
+  background-color: hsl(236deg, 21%, 26%);
+}
+
+.card-bottom-flip {
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  rotate: x 86deg;
+  border-bottom: 1px solid hsl(234deg, 17%, 12%);
+  background-color: hsl(236deg, 21%, 26%);
 }
 
 .countdown-timer__timer-container::after,
@@ -129,16 +170,19 @@ body::before {
 .countdown-timer__timer-container::after {
   left: 0;
   translate: -50% -50%;
+  z-index: 1;
 }
 
 .countdown-timer__timer-container::before {
   right: 0;
   translate: 50% -50%;
+  z-index: 1;
 }
 
 .footer {
   position: absolute;
   width: 100%;
+  left: 0;
   bottom: 1rem;
 }
 .footer__media {
@@ -157,6 +201,17 @@ body::before {
 }
 .footer__author {
   font-size: 1.2rem;
+  margin: 0 auto;
+}
+
+.animation .card-top-flip {
+  -webkit-animation: topFlip 0.3s ease-in forwards;
+          animation: topFlip 0.3s ease-in forwards;
+}
+
+.animation .card-bottom-flip {
+  -webkit-animation: bottomFlip 0.3s ease-out 0.3s forwards;
+          animation: bottomFlip 0.3s ease-out 0.3s forwards;
 }
 
 @-webkit-keyframes fallDown {
@@ -176,28 +231,53 @@ body::before {
     background-position: 0% 569px;
   }
 }
-@-webkit-keyframes upperFlip {
+@-webkit-keyframes topFlip {
   from {
-    -webkit-transform: 0;
-            transform: 0;
+    rotate: x 0deg;
   }
   to {
-    -webkit-transform: rotateX(-180deg);
-            transform: rotateX(-180deg);
+    rotate: x -90deg;
   }
 }
-@keyframes upperFlip {
+@keyframes topFlip {
   from {
-    -webkit-transform: 0;
-            transform: 0;
+    rotate: x 0deg;
   }
   to {
-    -webkit-transform: rotateX(-180deg);
-            transform: rotateX(-180deg);
+    rotate: x -90deg;
+  }
+}
+@-webkit-keyframes bottomFlip {
+  from {
+    rotate: x 90deg;
+  }
+  to {
+    rotate: x 0deg;
+  }
+}
+@keyframes bottomFlip {
+  from {
+    rotate: x 90deg;
+  }
+  to {
+    rotate: x 0deg;
+  }
+}
+@media (min-width: 900px) {
+  .card-bottom-flip {
+    rotate: x 85deg;
+  }
+}
+@media (min-width: 1100px) {
+  .card-bottom-flip {
+    rotate: x 84deg;
   }
 }
 @media (min-width: 1440px) {
   body {
     background-size: contain;
+  }
+  .card-bottom-flip {
+    rotate: x 83deg;
   }
 }/*# sourceMappingURL=style.css.map */

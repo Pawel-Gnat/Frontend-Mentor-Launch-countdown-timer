@@ -68,61 +68,33 @@ body::before {
 	padding-top: clamp(5.5rem, 8vw, 11rem);
 
 	&__timer-container {
+		font-size: clamp(3.2rem, 6vw, 8rem);
+		line-height: 0;
 		position: relative;
 		min-height: clamp(7rem, 11vw, 15rem);
 		aspect-ratio: 1/1;
-		border-radius: 0.5rem;
-		background-color: $dark-desaturated-blue;
 		box-shadow: 0px 8px 0px 0px $very-dark-mostly-black-blue;
-		perspective: 800px;
+		color: $soft-red;
 	}
 
-	/////////////////////////
-
-	&__upperbox {
-		position: absolute;
+	&__upperbox,
+	&__lowerbox {
+		position: relative;
 		height: 50%;
 		width: 100%;
-		// border-top: 2px solid $very-dark-mostly-black-blue;
+		border-radius: 0.5rem;
+		background-color: $dark-desaturated-blue;
+		perspective: 30rem;
+	}
+
+	&__upperbox {
 		border-bottom: 1px solid rgba($very-dark-mostly-black-blue, 0.3);
-		// background-color: rgba($very-dark-blue, 0.3);
-		// background-color: red;
-		// overflow: hidden;
-
-		// height: 20px;
-		// width: 30px;
-
-		transform-origin: center bottom;
-
-		perspective-origin: bottom right;
-		// perspective: 1000px;
-		// transform: rotateX(-50deg);
-
-		// animation: upperFlip 1s infinite;
+		filter: brightness(80%);
+		perspective-origin: bottom;
 	}
 
 	&__lowerbox {
-		position: absolute;
-		top: 50%;
-		height: 50%;
-		width: 100%;
-
-		border-top: 1px solid $very-dark-mostly-black-blue;
-		// transform-origin: bottom;
-		// overflow: hidden;
-		// animation: upperFlip 1s 1.5s infinite;
-	}
-
-	/////////////////////////
-
-	&__number {
-		font-size: clamp(3.2rem, 6vw, 8rem);
-		position: relative;
-		line-height: 100%;
-		top: 50%;
-		translate: 0 -50%;
-		color: $soft-red;
-		opacity: 0.6;
+		transform-origin: top;
 	}
 
 	&__text {
@@ -130,31 +102,53 @@ body::before {
 		letter-spacing: 3px;
 		text-transform: uppercase;
 		position: relative;
-		top: clamp(5rem, 7vw, 10rem);
+		top: clamp(2rem, 2vw, 3rem);
 		width: 100%;
 		color: $grayish-blue;
 	}
 }
 
-////////////////////////////////
-
-.countdown-timer__upperbox::before {
-	content: '';
-	position: absolute;
-	inset: 0;
-	height: 100%;
-	border-top: 2px solid $very-dark-mostly-black-blue;
-	// background-color: rgba($very-dark-blue, 0.3);
-	// transform-origin: center bottom;
-
-	// perspective: 1000px;
-	// transform: rotateX(-50deg);
-
-	// animation: upperFlip 1s infinite;
-	// animation: upperFlip 2s forwards;
+.card-top,
+.card-top-flip {
+	display: flex;
+	align-items: end;
+	justify-content: center;
 }
 
-/////////////////////////////
+.card-bottom,
+.card-bottom-flip {
+	display: flex;
+	align-items: start;
+	justify-content: center;
+}
+
+.card-top,
+.card-bottom {
+	height: 100%;
+	overflow: hidden;
+}
+
+.card-top-flip,
+.card-bottom-flip {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	border-radius: 0.5rem;
+	overflow: hidden;
+}
+
+.card-top-flip {
+	transform-origin: bottom;
+	border-top: 1px solid $very-dark-mostly-black-blue;
+	background-color: $dark-desaturated-blue;
+}
+
+.card-bottom-flip {
+	transform-origin: top;
+	rotate: x 86deg;
+	border-bottom: 1px solid $very-dark-mostly-black-blue;
+	background-color: $dark-desaturated-blue;
+}
 
 .countdown-timer__timer-container::after,
 .countdown-timer__timer-container::before {
@@ -170,16 +164,19 @@ body::before {
 .countdown-timer__timer-container::after {
 	left: 0;
 	translate: -50% -50%;
+	z-index: 1;
 }
 
 .countdown-timer__timer-container::before {
 	right: 0;
 	translate: 50% -50%;
+	z-index: 1;
 }
 
 .footer {
 	position: absolute;
 	width: 100%;
+	left: 0;
 	bottom: 1rem;
 
 	&__media {
@@ -197,7 +194,16 @@ body::before {
 
 	&__author {
 		font-size: 1.2rem;
+		margin: 0 auto;
 	}
+}
+
+.animation .card-top-flip {
+	animation: topFlip 0.3s ease-in forwards;
+}
+
+.animation .card-bottom-flip {
+	animation: bottomFlip 0.3s ease-out 0.3s forwards;
 }
 
 @keyframes fallDown {
@@ -209,17 +215,42 @@ body::before {
 	}
 }
 
-@keyframes upperFlip {
+@keyframes topFlip {
 	from {
-		transform: 0;
+		rotate: x 0deg;
 	}
 	to {
-		transform: rotateX(-180deg);
+		rotate: x -90deg;
+	}
+}
+
+@keyframes bottomFlip {
+	from {
+		rotate: x 90deg;
+	}
+	to {
+		rotate: x 0deg;
+	}
+}
+
+@media (min-width: 900px) {
+	.card-bottom-flip {
+		rotate: x 85deg;
+	}
+}
+
+@media (min-width: 1100px) {
+	.card-bottom-flip {
+		rotate: x 84deg;
 	}
 }
 
 @media (min-width: 1440px) {
 	body {
 		background-size: contain;
+	}
+
+	.card-bottom-flip {
+		rotate: x 83deg;
 	}
 }
