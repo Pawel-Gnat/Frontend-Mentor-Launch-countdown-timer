@@ -74,15 +74,46 @@ body::before {
 		border-radius: 0.5rem;
 		background-color: $dark-desaturated-blue;
 		box-shadow: 0px 8px 0px 0px $very-dark-mostly-black-blue;
+		perspective: 800px;
 	}
+
+	/////////////////////////
 
 	&__upperbox {
 		position: absolute;
 		height: 50%;
 		width: 100%;
+		// border-top: 2px solid $very-dark-mostly-black-blue;
 		border-bottom: 1px solid rgba($very-dark-mostly-black-blue, 0.3);
-		background-color: rgba($very-dark-blue, 0.3);
+		// background-color: rgba($very-dark-blue, 0.3);
+		// background-color: red;
+		// overflow: hidden;
+
+		// height: 20px;
+		// width: 30px;
+
+		transform-origin: center bottom;
+
+		perspective-origin: bottom right;
+		// perspective: 1000px;
+		// transform: rotateX(-50deg);
+
+		// animation: upperFlip 1s infinite;
 	}
+
+	&__lowerbox {
+		position: absolute;
+		top: 50%;
+		height: 50%;
+		width: 100%;
+
+		border-top: 1px solid $very-dark-mostly-black-blue;
+		// transform-origin: bottom;
+		// overflow: hidden;
+		// animation: upperFlip 1s 1.5s infinite;
+	}
+
+	/////////////////////////
 
 	&__number {
 		font-size: clamp(3.2rem, 6vw, 8rem);
@@ -105,16 +136,25 @@ body::before {
 	}
 }
 
-.countdown-timer__upperbox::after {
+////////////////////////////////
+
+.countdown-timer__upperbox::before {
 	content: '';
 	position: absolute;
 	inset: 0;
+	height: 100%;
 	border-top: 2px solid $very-dark-mostly-black-blue;
-	background-color: rgba($very-dark-blue, 0.3);
-	transform-origin: bottom;
-	// animation: flip 2s infinite;
-	animation: flip 2s forwards;
+	// background-color: rgba($very-dark-blue, 0.3);
+	// transform-origin: center bottom;
+
+	// perspective: 1000px;
+	// transform: rotateX(-50deg);
+
+	// animation: upperFlip 1s infinite;
+	// animation: upperFlip 2s forwards;
 }
+
+/////////////////////////////
 
 .countdown-timer__timer-container::after,
 .countdown-timer__timer-container::before {
@@ -169,7 +209,7 @@ body::before {
 	}
 }
 
-@keyframes flip {
+@keyframes upperFlip {
 	from {
 		transform: 0;
 	}

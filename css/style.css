@@ -68,13 +68,25 @@ body::before {
   background-color: hsl(236deg, 21%, 26%);
   -webkit-box-shadow: 0px 8px 0px 0px hsl(234deg, 17%, 12%);
           box-shadow: 0px 8px 0px 0px hsl(234deg, 17%, 12%);
+  -webkit-perspective: 800px;
+          perspective: 800px;
 }
 .countdown-timer__upperbox {
   position: absolute;
   height: 50%;
   width: 100%;
   border-bottom: 1px solid rgba(25, 26, 36, 0.3);
-  background-color: rgba(30, 31, 41, 0.3);
+  -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
+  -webkit-perspective-origin: bottom right;
+          perspective-origin: bottom right;
+}
+.countdown-timer__lowerbox {
+  position: absolute;
+  top: 50%;
+  height: 50%;
+  width: 100%;
+  border-top: 1px solid hsl(234deg, 17%, 12%);
 }
 .countdown-timer__number {
   font-size: clamp(3.2rem, 6vw, 8rem);
@@ -95,16 +107,12 @@ body::before {
   color: hsl(237deg, 18%, 59%);
 }
 
-.countdown-timer__upperbox::after {
+.countdown-timer__upperbox::before {
   content: "";
   position: absolute;
   inset: 0;
+  height: 100%;
   border-top: 2px solid hsl(234deg, 17%, 12%);
-  background-color: rgba(30, 31, 41, 0.3);
-  -webkit-transform-origin: bottom;
-          transform-origin: bottom;
-  -webkit-animation: flip 2s forwards;
-          animation: flip 2s forwards;
 }
 
 .countdown-timer__timer-container::after,
@@ -168,7 +176,7 @@ body::before {
     background-position: 0% 569px;
   }
 }
-@-webkit-keyframes flip {
+@-webkit-keyframes upperFlip {
   from {
     -webkit-transform: 0;
             transform: 0;
@@ -178,7 +186,7 @@ body::before {
             transform: rotateX(-180deg);
   }
 }
-@keyframes flip {
+@keyframes upperFlip {
   from {
     -webkit-transform: 0;
             transform: 0;
