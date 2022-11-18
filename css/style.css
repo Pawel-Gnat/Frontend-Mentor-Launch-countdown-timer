@@ -19,6 +19,13 @@ a {
 body {
   font-family: "Red Hat Text", sans-serif;
   font-size: 1.4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   min-height: 100vh;
   padding: 0 2.5rem;
   background: url(../images/pattern-hills.svg) no-repeat right 25% bottom -5%, -webkit-gradient(linear, left top, left bottom, from(#1d1e28), color-stop(#1e1e29), color-stop(#1e1e29), color-stop(#1f1d2a), color-stop(#201d2a), color-stop(#211d2a), color-stop(#211d2b), color-stop(#221d2b), color-stop(#231d2b), color-stop(#231d2c), color-stop(#241d2c), to(#251d2c));
@@ -35,6 +42,12 @@ body::before {
   -webkit-animation: fallDown 60s infinite;
           animation: fallDown 60s infinite;
   z-index: -1;
+}
+
+main {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 .heading {
@@ -180,9 +193,7 @@ body::before {
 }
 
 .footer {
-  position: absolute;
-  width: 100%;
-  left: 0;
+  position: relative;
   bottom: 1rem;
 }
 .footer__media {

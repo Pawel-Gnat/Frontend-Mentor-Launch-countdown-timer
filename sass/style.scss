@@ -20,6 +20,8 @@ a {
 body {
 	font-family: 'Red Hat Text', sans-serif;
 	font-size: 1.4rem;
+	display: flex;
+	flex-direction: column;
 	min-height: 100vh;
 	padding: 0 2.5rem;
 	background: url(../images/pattern-hills.svg) no-repeat right 25% bottom -5%,
@@ -49,6 +51,10 @@ body::before {
 	background: url(../images/bg-stars.svg) center;
 	animation: fallDown 60s infinite;
 	z-index: -1;
+}
+
+main {
+	flex: 1;
 }
 
 .heading {
@@ -174,9 +180,7 @@ body::before {
 }
 
 .footer {
-	position: absolute;
-	width: 100%;
-	left: 0;
+	position: relative;
 	bottom: 1rem;
 
 	&__media {
